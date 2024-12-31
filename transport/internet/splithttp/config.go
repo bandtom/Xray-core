@@ -105,6 +105,17 @@ func (c *Config) GetNormalizedXPaddingBytes() RangeConfig {
 	return *c.XPaddingBytes
 }
 
+func (m *XmuxConfig) GetNormalizedHMaxReusableSecs() RangeConfig {
+	if m.HMaxReusableSecs == nil {
+		return RangeConfig{
+			From: 0,
+			To:   0,
+		}
+	}
+
+	return *m.HMaxReusableSecs
+}
+
 func (m *XmuxConfig) GetNormalizedCMaxRequestTimes() RangeConfig {
 	if m.HMaxRequestTimes == nil {
 		return RangeConfig{
@@ -125,16 +136,6 @@ func (m *XmuxConfig) GetNormalizedCMaxReuseTimes() RangeConfig {
 	}
 
 	return *m.CMaxReuseTimes
-}
-
-func (m *XmuxConfig) GetNormalizedCMaxLifetimeMs() RangeConfig {
-	if m.CMaxLifetimeMs == nil {
-		return RangeConfig{
-			From: 0,
-			To:   0,
-		}
-	}
-	return *m.CMaxLifetimeMs
 }
 
 func (m *XmuxConfig) GetNormalizedMaxConnections() RangeConfig {
